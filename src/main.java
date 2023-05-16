@@ -1,4 +1,9 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
+
 
 public class main {
     static Scanner scanner = new Scanner(System.in);
@@ -25,8 +30,7 @@ public class main {
         String username = scanner2.nextLine();
         System.out.println("Password:");
         String password = scanner2.nextLine();
-        User u = new User(username, password);
-        if(u.searchUsers(u)){
+        if(User.searchUsers(username, password)){
             Menu();
         }else {
             System.out.println("Username or password is wrong! Try Again!");
@@ -42,7 +46,25 @@ public class main {
         u1.addUsers(u1);
     }
     public static void Menu(){
-        System.out.println("Add image:");
-
+        int o = 0;
+        while(o != 2){
+            System.out.println("""
+                    1. Add image
+                    2. Log out""");
+            o = scanner.nextInt();
+            if (o == 1){
+                addImage();
+            }
+        }
+    }
+    public static void addImage(){
+        System.out.println("Image file path:");
+        String path = scanner2.nextLine();
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File(path));
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
     }
 }

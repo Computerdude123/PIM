@@ -21,13 +21,19 @@ public class User {
     }
     static ArrayList<User> users = new ArrayList<>();
 
-    public boolean searchUsers(User u){
-        if ()
+    public static boolean searchUsers(String username, String password){
+        int c = 0;
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).username.equals(username) && users.get(i).password.equals(password)) {
+                c = 1;
+            }
+        }
+        return (c == 1);
     }
     public void addUsers(User user){
         users.add(user);
         try {
-            FileWriter mywriter = new FileWriter("output.txt");
+            FileWriter mywriter = new FileWriter("accounts.txt");
             for (int i = 0; i < users.size(); i++) {
                 mywriter.write(users.get(i).username + System.lineSeparator());
                 mywriter.write(users.get(i).password);
@@ -40,7 +46,7 @@ public class User {
     public static void setUsers() {
         ArrayList<String> lines = null;
         try {
-            lines = new ArrayList<>(Files.readAllLines(Paths.get("output.txt")));
+            lines = new ArrayList<>(Files.readAllLines(Paths.get("accounts.txt")));
         } catch (IOException e) {
             e.printStackTrace();
         }
