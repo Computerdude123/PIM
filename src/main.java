@@ -2,6 +2,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Scanner;
 
 
@@ -58,13 +59,29 @@ public class main {
         }
     }
     public static void addImage(){
-        System.out.println("Image file path:");
-        String path = scanner2.nextLine();
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File(path));
-        } catch (IOException e) {
-            System.out.println("Error");
+        int o;
+        System.out.println("""
+                1. Filepath
+                2. URL""");
+        o = scanner.nextInt();
+        if (o == 1){
+            System.out.println("Image file path:");
+            String path = scanner2.nextLine();
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File(path));
+            } catch (IOException e) {
+                System.out.println("Error");
+            }
+        }else {
+            System.out.println("Image URL:");
+            String earl = scanner2.nextLine();
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new URL(earl));
+            } catch (IOException e) {
+                System.out.println("Error");
+            }
         }
     }
 }
