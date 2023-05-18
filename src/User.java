@@ -50,12 +50,11 @@ public class User {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < lines.size(); i++) {
+        for (int i = 0; i < lines.size(); i += 2) {
             String username = lines.get(i);
             String password = lines.get(i + 1);
             User u1 = new User(username,password);
             users.add(u1);
-            i++;
         }
     }
 }
